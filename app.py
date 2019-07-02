@@ -16,7 +16,7 @@ class PerforceLogger:
 
     def check_p4(self):
         """ Runs the p4 changes command to get the latest commits from the server. """
-        p4_changes = subprocess.Popen('p4 changes -t -m 1 -l', stdout=subprocess.PIPE, shell=True)
+        p4_changes = subprocess.Popen('p4 changes -t -m 1 -s submitted', stdout=subprocess.PIPE, shell=True)
         return p4_changes.stdout.read().decode('ISO-8859-1')
 
     def check_for_changes(self, output):
