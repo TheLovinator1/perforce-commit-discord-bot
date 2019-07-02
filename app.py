@@ -8,7 +8,7 @@ from dhooks import Embed, Webhook
 
 class PerforceLogger:
     def __init__(self, webhook_url):
-        """ Initializes a 30 second timer used to check if commits have been made.  """
+        """ Initializes a 5 second timer used to check if commits have been made.  """
         self.webhook_url = webhook_url
         self.global_store = {
             'latest_change': ''
@@ -65,4 +65,4 @@ if __name__ == "__main__":
 
     while True:
         logger.post_changes()
-        time.sleep(30.0 - ((time.time() - timer) % 30.0))
+        time.sleep(5 - ((time.time() - timer) % 5.0))
