@@ -1,7 +1,8 @@
 import os
 import subprocess
 import time
-from discord_webhooks import DiscordWebhooks
+from dhooks import Embed, Webhook
+import re
 
 
 class PerforceLogger():
@@ -33,15 +34,25 @@ class PerforceLogger():
 
     def post_changes(self):
         """ Posts the changes to the Discord server via a webhook. """
+        regex = r"Change (?P<change_number>\d) on (?P<date>\d{4}/\d{2}/\d{2}) by (?P<name>.*)@.* \'(?P<message>.*?)\'"
+        substitution = "\g<message>- \g<name>"
+
+        message = re.sub(regex, substitution, self.check_p4(), flags=re.MULTILINE)
+
         output = self.check_p4()
         payload = self.check_for_changes(output)
-
         if payload != '':
-            message = DiscordWebhooks(self.webhook_url)
-            message.set_content(color=0xc8702a, description='`%s`' % (payload))
-            message.set_author(name='Perforce')
-            message.set_footer(text='https://github.com/JamesIves/perforce-commit-discord-bot', ts=True)
-            message.send()
+            # Make webhook embed
+            hook = Webhook(self.webhook_url)
+
+            embed = Embed(
+                description=message,
+                color=49915,
+                timestamp="now"
+            )
+            # Post to channel
+            hook.send(embed=embed, username="Perforce", avatar_url="https://i.imgur.com/WseNTPC.jpg")
+
 
         else:
             return
