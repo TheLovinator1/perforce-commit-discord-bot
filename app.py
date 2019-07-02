@@ -5,7 +5,7 @@ from dhooks import Embed, Webhook
 import re
 
 
-class PerforceLogger():
+class PerforceLogger:
     def __init__(self, webhook_url):
         """ Initializes a 30 second timer used to check if commits have been made.  """
         self.webhook_url = webhook_url
