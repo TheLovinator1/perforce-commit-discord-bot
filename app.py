@@ -1,8 +1,9 @@
 import os
+import re
 import subprocess
 import time
+
 from dhooks import Embed, Webhook
-import re
 
 
 class PerforceLogger:
@@ -52,8 +53,6 @@ class PerforceLogger:
             )
             # Post to channel
             hook.send(embed=embed, username="Perforce", avatar_url="https://i.imgur.com/WseNTPC.jpg")
-
-
         else:
             return
 
