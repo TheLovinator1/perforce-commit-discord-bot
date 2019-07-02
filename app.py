@@ -35,6 +35,7 @@ class PerforceLogger:
 
     def post_changes(self):
         """ Posts the changes to the Discord server via a webhook. """
+        # TODO: This brakes when user writes "'"
         regex = r"Change (?P<change_number>\d*) on (?P<date>\d{4}/\d{2}/\d{2}) by (?P<name>.*)@.* \'(?P<message>.*?)\'"
         substitution = "\g<message>- \g<name>"
 
