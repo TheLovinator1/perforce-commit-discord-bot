@@ -1,10 +1,8 @@
-# Perforce Commit Logger Discord Bot 🗒️ ✏️
-
-[![Build Status](https://travis-ci.org/JamesIves/perforce-commit-discord-bot.svg?branch=master)](https://travis-ci.org/JamesIves/perforce-commit-discord-bot) [![Issues](https://img.shields.io/github/issues/JamesIves/perforce-commit-discord-bot.svg)](https://github.com/JamesIves/perforce-commit-discord-bot/issues)
+# Perforce Commit Logger Discord Bot
 
 With this bot you're able to keep track of commits made to a [Perforce version control](https://www.perforce.com/) server within a [Discord](https://discordapp.com/) channel. 
 
-## Installation Steps 💽
+## Installation Steps
 
 1. Within your Discord server go to the settings for the channel you'd like the commit logs to be posted to and copy the webhook URL.
 2. Save the webhook URL as an environment variable called `DISCORD_WEBHOOK_URL`. 
@@ -15,11 +13,11 @@ With this bot you're able to keep track of commits made to a [Perforce version c
 
 Unit tests can be run using the `$ python tests.py` command.
 
-## Getting Started :airplane:
+## Getting Started
 
 Every thirty seconds the bot runs a Perforce command in the terminal that checks for the most recent changes. If it finds one it stores it in memory, if the change it finds is the same as the one it gathered previously then it discards it. You'll need to provide the bot with access to your servers Perforce command line. One way of doing this is running the Python application on the server which hosts your Perforce instance. If you can type `p4 changes` yourself then the bot will be able to do its thing.
 
-## Configuration 📁
+## Configuration
 
 The installation will require you to enter a number of settings as environment variables. Below you'll find an explanation of each.
 
